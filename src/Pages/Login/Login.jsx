@@ -1,28 +1,70 @@
+import { AiOutlineMail } from "react-icons/ai";
+import { BiLock } from "react-icons/bi";
+import { BsGoogle } from "react-icons/bs";
+import { Link } from "react-router-dom";
 const Login = () => {
-    return (
+    const style = { color: "#00B0FF", fontSize: "1.5em" };
+  return (
+    <div className="flex justify-center gap-10 items-center h-[100vh]">
+      <form>
+        <h1 className="text-4xl text-center mb-4 font-semibold">Login</h1>
+        <p className="text-sm italic text-center">
+          Unlock a world of possibilities with a single click
+        </p>
+        <hr className="border-t-1 border-black mx-2 my-4" />
+        <div className="relative">
+          <input
+          name="email"
+            className="px-24 mb-5 py-2 border border-[#00B0FF]"
+            type="email"
+            placeholder="email address"
+          />
+          <AiOutlineMail
+            style={style}
+            className=" absolute top-2 left-5"
+          ></AiOutlineMail>
+        </div>
+        <div className="relative">
+          <input
+          name="password"
+            className="px-24 py-2 mb-5 border border-[#00B0FF]"
+            type="password"
+            placeholder="password"
+          />
+          <BiLock style={style} className=" absolute top-2 left-5"></BiLock>
+        </div>
+        <div className="mb-5">
+          <button
+            type="submit"
+            className="px-[167px] block py-2 border bg-[#00B0FF] text-white font-bold"
+          >
+            Login
+          </button>
+        </div>
+        <p className="my-3 text-center">or login with </p>
+        <div>
+          <button
+            type="submit"
+            className="px-[120px] py-2 border bg-white text-[#00B0FF] font-bold flex items-center"
+          >
+            <BsGoogle className="inline" style={style}></BsGoogle>
+            <span className="inline pl-3">Google Login</span>
+          </button>
+        </div>
+        <p className="py-3">
+          Don't have an account?
+          <Link to="/registration">
+            <span className="text-[#00B0FF] pl-4 underline ">
+              Please Register
+            </span>
+          </Link>
+        </p>
+      </form>
       <div>
-        <form>
-          <h1 className="text-5xl">Login</h1>
-          <div>
-            <input
-              className="px-24 mb-5 py-2 border border-[#00B0FF]"
-              type="email"
-              placeholder="email address"
-            />
-          </div>
-          <div>
-            <input
-              className="px-24 py-2 mb-5 border border-[#00B0FF]"
-              type="password"
-              placeholder="password"
-            />
-          </div>
-          <div>
-            <button className="px-[167px] py-2 border bg-[#00B0FF] text-white font-bold">Login</button>
-          </div>
-        </form>
+        <img src="https://i.ibb.co/4s79mRC/undraw-login-re-4vu2.png" alt="" />
       </div>
-    );
+    </div>
+  );
 };
 
 export default Login;

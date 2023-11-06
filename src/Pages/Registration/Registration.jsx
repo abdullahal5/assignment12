@@ -1,11 +1,63 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
+import { updateProfile } from "firebase/auth";
 
 const Registration = () => {
+  const [err, setErr] = useState('')
+  const {createUser} = useContext(AuthContext)
+  const handleRegister = e =>{
+    e.preventDefault()
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const photo = e.target.photo.value;
+    console.log(name, email, password, photo)
+
+
+if (password.length < 6) {
+  setErr("Your password must be 6 character or longer");
+  return;
+} else if (!/[A_Z]/.test(password)) {
+  setErr("You have to give atleast one captial letter");
+  return;
+} else if (!/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password)) {
+  setErr("There need atleast one special character");
+  return;
+}
+
+    setErr('')
+    createUser (email, password)
+    .then(res => {
+      console.log(res.user)
+      Swal.fire({
+        title: "Good job!",
+        text: "You successfylly Registered",
+        icon: "success",
+      });
+      e.target.reset()
+      updateProfile(res.user, {
+        displayName: name,
+        photoURL: photo
+      })
+      .then(() =>{
+        console.log('updated')
+      })
+      .catch(err =>{
+        console.log(err)
+      })
+    })
+    .catch(err =>{
+       console.log(err)
+       setErr(err.message)
+    })
+  }
     return (
       <div>
         <div className="flex justify-center items-center h-[100vh]">
           <div className="flex justify-center flex-row-reverse items-center">
-            <form>
+            <form onSubmit={handleRegister}>
               <h1 className="text-4xl text-center mb-4 font-semibold">
                 Register
               </h1>
@@ -50,6 +102,7 @@ const Registration = () => {
                 </div>
               </div>
               <div>
+                <p className="py-3">{err && <p className="text-red-600">{err}</p>}</p>
                 <button
                   type="submit"
                   className="px-[138px] py-2 border bg-[#00B0FF] text-white font-bold flex items-center"

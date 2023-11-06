@@ -1,12 +1,39 @@
+import { useContext, useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { BiLock } from "react-icons/bi";
 import { BsGoogle } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 const Login = () => {
+  const {signInUser, auth} = useContext(AuthContext)
+  const [Success, setSuccess] = useState('')
     const style = { color: "#00B0FF", fontSize: "1.5em" };
+    const handleLogin = (e) =>{
+      e.preventDefault()
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+      // const user = {
+      //   email, password
+      // }
+      console.log(email, password)
+      signInUser(email, password)
+      .then(res =>{
+        // e.target.reset()
+        console.log(res)
+        Swal.fire({
+          title: "Good job!",
+          text: "You successfylly logged in",
+          icon: "success",
+        });
+      })
+      .catch(err =>{
+        console.log(err)
+      })
+    }
   return (
     <div className="flex justify-center gap-10 items-center h-[100vh]">
-      <form>
+      <form onSubmit={handleLogin}>
         <h1 className="text-4xl text-center mb-4 font-semibold">Login</h1>
         <p className="text-sm italic text-center">
           Unlock a world of possibilities with a single click

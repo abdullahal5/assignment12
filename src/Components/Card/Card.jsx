@@ -1,13 +1,14 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import Skeletone from '../Skeleton/Skeletone';
+import { Link } from 'react-router-dom';
 const Card = ({ items, filteredData , loading}) => {
   
   return (
     <div className="flex justify-center mt-10">
       <div className="grid grid-cols-3 justify-center gap-5">
         {loading ? (
-          <div className='grid grid-cols-3 justify-center'>
+          <div className="grid grid-cols-3 justify-center">
             <Skeletone></Skeletone>
             <Skeletone></Skeletone>
             <Skeletone></Skeletone>
@@ -28,7 +29,11 @@ const Card = ({ items, filteredData , loading}) => {
                   <p>Posting Date: {val.date}</p>
                 </div>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Buy Now</button>
+                  <Link to={`/jobdetails/${val._id}`}>
+                    <button className="btn text-white bg-[#00B0FF]">
+                      View Details Button
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

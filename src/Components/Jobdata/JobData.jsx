@@ -28,6 +28,10 @@ const JobData = () => {
     }
     return (
       <div>
+        <h1 className="text-3xl font-semibold text-center my-7">
+          Job by <span className="text-[#00B0FF]">category</span>
+        </h1>
+
         <Buttons
           menuItems={menuItems}
           filterItems={filterItems}
@@ -35,7 +39,11 @@ const JobData = () => {
           items={items}
           setFilteredData={setFilteredData}
         ></Buttons>
-        <Card loading={loading} items={items} filteredData={filteredData}></Card>
+        <Card
+          loading={loading}
+          items={items}
+          filteredData={filteredData}
+        ></Card>
       </div>
     );
 };

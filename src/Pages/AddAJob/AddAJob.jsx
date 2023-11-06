@@ -1,8 +1,9 @@
 const AddAJob = () => {
     return (
-        <div>
-            
-        </div>
+      <div>
+        <h1>Add your job information
+        </h1>
+      </div>
     );
 };
 

@@ -1,10 +1,32 @@
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const JobTableDetails = () => {
+    const {user} = useContext(AuthContext);
+    const email = user?.email
     const data = useLoaderData()
     console.log(data)
         const { _id, photo, name, title, date, deadline, salary , applicants, description} = data;
-
+    const handleApply = (e) =>{
+        e.preventDefault()
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const link = e.target.link.value;
+        const apply = {name, email, link}
+        console.log(apply)
+        fetch("http://localhost:5000/apply", {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(apply)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+    }
     return (
       <div>
         <h1 className="text-3xl text-center my-5">
@@ -26,7 +48,68 @@ const JobTableDetails = () => {
               </div>
               <p>Description: {description}</p>
               <div className="card-actions justify-end">
-                <button className="btn text-white font-bold bg-[#00B0FF]">Apply</button>
+                {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                <button
+                  className="btn bg-[#00B0FF] text-white font-bold"
+                  onClick={() =>
+                    document.getElementById("my_modal_3").showModal()
+                  }
+                >
+                  Apply
+                </button>
+                <dialog id="my_modal_3" className="modal">
+                  <div className="modal-box">
+                    <form method="dialog">
+                      {/* if there is a button in form, it will close the modal */}
+                      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                        ✕
+                      </button>
+                    </form>
+                    <h3 className="font-bold text-lg text-center text-[#00B0FF]">
+                      Apply
+                    </h3>
+                    <p className="py-4">
+                      <form onSubmit={handleApply}>
+                        <div className="text-center">
+                          <p className="text-sm py-2">Name:</p>
+                          <input
+                          defaultValue={name}
+                            name="name"
+                            className="px-24 py-2 mb-5 border border-[#00B0FF]"
+                            type="text"
+                            placeholder="Your Name"
+                          />
+                        </div>
+                        <div className="text-center">
+                          <p className="text-sm py-2">Email:</p>
+                          <input
+                          defaultValue={email}
+                            name="email"
+                            className="px-24 py-2 mb-5 border border-[#00B0FF]"
+                            type="email"
+                            placeholder="Your Email"
+                          />
+                        </div>
+                        <div className="text-center">
+                          <p className="text-sm py-2">Resume link: </p>
+                          <input
+                            name="link"
+                            className="px-24 py-2 mb-5 border border-[#00B0FF]"
+                            type="text"
+                            placeholder="Your Resume Link"
+                          />
+                        </div>
+                        <div>
+                          <input
+                            className="btn bg-[#00B0FF] text-white w-full"
+                            type="submit"
+                            value="sumbit"
+                          />
+                        </div>
+                      </form>
+                    </p>
+                  </div>
+                </dialog>
               </div>
             </div>
           </div>

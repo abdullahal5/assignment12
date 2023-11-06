@@ -5,9 +5,11 @@ import { BsGoogle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 const Login = () => {
   const {signInUser, auth} = useContext(AuthContext)
   const [err, setErr] = useState('')
+  const provider = new GoogleAuthProvider();
     const style = { color: "#00B0FF", fontSize: "1.5em" };
     const handleLogin = (e) =>{
       e.preventDefault()
@@ -31,6 +33,15 @@ const Login = () => {
       })
       setErr('')
     }
+    const handleGoogle = () => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          console.log(result.user);
+        })
+        .then((err) => {
+          console.log(err);
+        });
+    };
   return (
     <div className="flex justify-center gap-10 items-center h-[100vh]">
       <form onSubmit={handleLogin}>
@@ -73,6 +84,7 @@ const Login = () => {
         <p className="my-3 text-center">or login with </p>
         <div>
           <button
+          onClick={handleGoogle}
             type="submit"
             className="px-[120px] py-2 border bg-white text-[#00B0FF] font-bold flex items-center"
           >

@@ -21,6 +21,15 @@ const AddAJob = () => {
             name, title, category, salary, description,date, deadline, photo, applicants
         }
         console.log(job)
+        fetch("http://localhost:5000/jobs",{
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(job)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
         
     }
     const handleChange = e =>{
@@ -28,7 +37,7 @@ const AddAJob = () => {
     }
   return (
     <div className="bg-base-200">
-      <h1 className="text-4xl text-center font-semibold">
+      <h1 className="text-4xl text-center font-semibold py-5">
         Add your job information
       </h1>
       <form onSubmit={handleAdd} className="p-20">

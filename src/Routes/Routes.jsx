@@ -7,42 +7,43 @@ import AppliedJobs from "../Pages/AppliedJobs/AppliedJobs";
 import MyJobs from "../Pages/MyJobs/MyJobs";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
+import JobData from "../Components/Jobdata/JobData";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
     children: [
-        {
-            path: '/',
-            element: <Home></Home>,
-        },
-        {
-            path: '/alljobs',
-            element: <Alljobs></Alljobs>
-        },
-        {
-            path: '/addajobs',
-            element: <AddAJob></AddAJob>
-        },
-        {
-            path: '/appliedjobs',
-            element: <AppliedJobs></AppliedJobs>
-        },
-        {
-            path: '/myjobs',
-            element: <MyJobs></MyJobs>,
-        },
-        {
-            path: '/login',
-            element: <Login></Login>,
-        },
-        {
-            path: '/registration',
-            element: <Registration></Registration>
-        }
-        
-    ]
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/alljobs",
+        element: <Alljobs></Alljobs>,
+      },
+      {
+        path: "/addajobs",
+        element: <AddAJob></AddAJob>,
+      },
+      {
+        path: "/appliedjobs",
+        element: <AppliedJobs></AppliedJobs>,
+      },
+      {
+        path: "/myjobs",
+        element: <MyJobs></MyJobs>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/registration",
+        element: <Registration></Registration>,
+      },
+      
+    ],
   },
 ]);
 

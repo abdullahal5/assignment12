@@ -7,19 +7,17 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 const Login = () => {
   const {signInUser, auth} = useContext(AuthContext)
-  const [Success, setSuccess] = useState('')
+  const [err, setErr] = useState('')
     const style = { color: "#00B0FF", fontSize: "1.5em" };
     const handleLogin = (e) =>{
       e.preventDefault()
       const email = e.target.email.value;
       const password = e.target.password.value;
-      // const user = {
-      //   email, password
-      // }
+      
       console.log(email, password)
       signInUser(email, password)
       .then(res =>{
-        // e.target.reset()
+        e.target.reset()
         console.log(res)
         Swal.fire({
           title: "Good job!",
@@ -29,7 +27,9 @@ const Login = () => {
       })
       .catch(err =>{
         console.log(err)
+        setErr(err.message)
       })
+      setErr('')
     }
   return (
     <div className="flex justify-center gap-10 items-center h-[100vh]">
@@ -41,7 +41,7 @@ const Login = () => {
         <hr className="border-t-1 border-black mx-2 my-4" />
         <div className="relative">
           <input
-          name="email"
+            name="email"
             className="px-24 mb-5 py-2 border border-[#00B0FF]"
             type="email"
             placeholder="email address"
@@ -53,7 +53,7 @@ const Login = () => {
         </div>
         <div className="relative">
           <input
-          name="password"
+            name="password"
             className="px-24 py-2 mb-5 border border-[#00B0FF]"
             type="password"
             placeholder="password"
@@ -61,6 +61,8 @@ const Login = () => {
           <BiLock style={style} className=" absolute top-2 left-5"></BiLock>
         </div>
         <div className="mb-5">
+          <p className="py-3">{err && <p className="text-red-600">{err}</p>}</p>
+
           <button
             type="submit"
             className="px-[167px] block py-2 border bg-[#00B0FF] text-white font-bold"

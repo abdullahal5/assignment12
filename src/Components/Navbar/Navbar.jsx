@@ -74,6 +74,20 @@ const Navbar = () => {
               My Jobs
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/login"
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "pending"
+                  : isActive
+                  ? "bg-[#00B0FF] px-4 py-2 rounded-lg font-bold text-white"
+                  : ""
+              }
+            >
+              Login
+            </NavLink>
+          </li>
         </div>
       </>
     );

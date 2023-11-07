@@ -6,14 +6,15 @@ const JobTableDetails = () => {
     const {user} = useContext(AuthContext);
     const email = user?.email
     const data = useLoaderData()
-    console.log(data)
-        const {  photo, name, title, date, deadline, salary , applicants, description} = data;
+    // console.log(data)
+        const {  photo, name, title, date, deadline, salary , applicants, description, category} = data;
     const handleApply = (e) =>{
         e.preventDefault()
         const name2 = e.target.name.value;
         const email = e.target.email.value;
         const link = e.target.link.value;
                 const data = {
+                 category,
                   photo,
                   name,
                   title,

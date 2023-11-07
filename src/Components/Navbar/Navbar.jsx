@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaUserCircle } from "react-icons/fa";
+import axios from "axios";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -16,10 +17,17 @@ const Navbar = () => {
           text: "You successfylly logged out",
           icon: "success",
         });
+        axios.post("http://localhost:5000/logout", user, {
+          withCredentials: true
+        })
+        .then(res => console.lot(res.data))
     })
     .catch(err =>{
       console.log(err)
     })
+  }
+  const handleBlog = () =>{
+    window.location.href = "../Blog/index.html";
   }
     const links = (
       <>
@@ -178,7 +186,7 @@ const Navbar = () => {
                 <FaUserCircle style={style} className="mr-10 "></FaUserCircle>
               </div>
             )}
-            <a className="btn">Button</a>
+            <a onClick={handleBlog} className="btn bg-[#00B0FF] text-white ">Blog</a>
           </div>
         </div>
       </div>

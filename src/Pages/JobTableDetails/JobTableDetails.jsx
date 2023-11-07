@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { Helmet } from "react-helmet-async";
+import toast, { Toaster } from "react-hot-toast";
 
 const JobTableDetails = () => {
     const {user} = useContext(AuthContext);
@@ -42,8 +44,24 @@ const JobTableDetails = () => {
             console.log(data)
         })
     }
+   
+    const handleModal = () =>{
+      if (deadline < date) {
+        //  alert('not ok')
+        return toast.error("The application time is over");
+      }
+      else{
+        document.getElementById("my_modal_3").showModal();
+      }
+    }
     return (
       <div>
+        <div>
+          <Toaster />
+        </div>
+        <Helmet>
+          <title>CareerCanvas | All Job Details</title>
+        </Helmet>
         <h1 className="text-3xl text-center my-5">
           <span className="text-[#00B0FF]">Apply</span> this Job
         </h1>
@@ -66,9 +84,9 @@ const JobTableDetails = () => {
                 {/* You can open the modal using document.getElementById('ID').showModal() method */}
                 <button
                   className="btn bg-[#00B0FF] text-white font-bold"
-                  onClick={() =>
-                    document.getElementById("my_modal_3").showModal()
-                  }
+                  onClick={() => {
+                    handleModal();
+                  }}
                 >
                   Apply
                 </button>
@@ -88,7 +106,7 @@ const JobTableDetails = () => {
                         <div className="text-center">
                           <p className="text-sm py-2">Name:</p>
                           <input
-                          defaultValue={name}
+                            defaultValue={name}
                             name="name"
                             className="px-24 py-2 mb-5 border border-[#00B0FF]"
                             type="text"
@@ -98,7 +116,7 @@ const JobTableDetails = () => {
                         <div className="text-center">
                           <p className="text-sm py-2">Email:</p>
                           <input
-                          defaultValue={email}
+                            defaultValue={email}
                             name="email"
                             className="px-24 py-2 mb-5 border border-[#00B0FF]"
                             type="email"

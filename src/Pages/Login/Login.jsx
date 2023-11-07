@@ -26,6 +26,18 @@ const Login = () => {
           text: "You successfylly logged in",
           icon: "success",
         });
+        // jwt fetch
+        fetch("http://localhost:5000/jwt", {
+          method: "post",
+          credentials: 'include',
+          // withCredentials: true,
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({email:email})
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
       })
       .catch(err =>{
         console.log(err)

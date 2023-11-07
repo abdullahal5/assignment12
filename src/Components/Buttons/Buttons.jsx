@@ -6,6 +6,7 @@ const Buttons = ({
   items,
   setFilteredData,
 }) => {
+  console.log(menuItems)
   const [activeButton, setActiveButton] = useState(null);
   const [activeButton1, setActiveButton1] = useState(false);
   

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import AppliedJobTable from "../../Components/AppliedJobTable/AppliedJobTable";
+import { Helmet } from "react-helmet-async";
 
 const AppliedJobs = () => {
     const {user} = useContext(AuthContext)
@@ -9,7 +10,9 @@ const AppliedJobs = () => {
     // console.log(value)
     const url = `http://localhost:5000/apply?email=${user?.email}`;
     useEffect(()=>{
-        fetch(url)
+        fetch(url, {
+          credentials: 'include'
+        })
         .then(res => res.json())
         .then(data => setApplied(data))
     },[])
@@ -26,6 +29,9 @@ const AppliedJobs = () => {
     
     return (
       <div>
+        <Helmet>
+          <title>CareerCanvas | Applied Jobs</title>
+        </Helmet>
         <h1 className="text-4xl text-center pt-5 ">
           Your <span className="text-[#00B0FF]">applied</span> Jobs
         </h1>

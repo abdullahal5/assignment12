@@ -2,11 +2,15 @@ import { AiOutlineSearch } from "react-icons/ai";
 import JobData from "../../Components/Jobdata/JobData";
 import Footer from "../../Components/Footer/Footer";
 import Service from "../../Components/Service/Service";
+import { Helmet } from "react-helmet-async";
 const Home = () => {
         const style = { color: "#00B0FF", fontSize: "1.5em" };
 
   return (
     <div>
+      <Helmet>
+        <title>CareerCanvas | Home</title>
+      </Helmet>
       <div className="flex items-center justify-center gap-10">
         <div className="space-y-4">
           <h1 className="font-semibold ">
@@ -47,7 +51,6 @@ const Home = () => {
         </div>
       </div>
       <JobData></JobData>
-
       <Service></Service>
       <Footer></Footer>
     </div>

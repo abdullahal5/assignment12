@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 import Buttons from "../Buttons/Buttons";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useQuery } from "@tanstack/react-query";
 
 
 
@@ -13,17 +14,18 @@ const JobData = () => {
     console.log(items)
     const menuItems = [...new Set(items.map((val) => val.category))]
     useEffect(()=>{
-        fetch("http://localhost:5000/jobs")
-        .then(res => res.json())
-        .then(data => {
-            setItems(data)
-            setLoading(false)
-        })
+      fetch("http://localhost:5000/jobs")
+          .then((res) => res.json())
+          .then((data) => {
+            setItems(data);
+            setLoading(false);
+          });
     },[])
-
+    
     const filterItems = (cat) =>{
-        const newItems = items.filter((newval) => newval.category === cat)
-        setFilteredData(newItems)
+      const newItems = items.filter((newval) => newval.category === cat)
+      setFilteredData(newItems)
+      // console.log(newItems)
         
     }
     return (

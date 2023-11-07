@@ -8,10 +8,8 @@ const Card = ({ items, filteredData , loading}) => {
     <div className="flex justify-center mt-10">
       <div className="grid grid-cols-3 justify-center gap-5">
         {loading ? (
-          <div className="grid grid-cols-3 justify-center">
-            <Skeletone></Skeletone>
-            <Skeletone></Skeletone>
-            <Skeletone></Skeletone>
+          <div className="flex justify-center h-[100vh] items-center">
+            <span className="loading loading-spinner loading-lg"></span>
           </div>
         ) : (
           filteredData.map((val) => (

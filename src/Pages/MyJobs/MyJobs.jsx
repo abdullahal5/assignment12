@@ -1,24 +1,29 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import MyJobTable from "../../Components/MyJobTable/MyJobTable";
+// import UseMyJob from "../../Providers/UseMyJob";
+import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
-import UseMyJob from "../../Providers/UseMyJob";
 
 const MyJobs = () => {
   const [newData, setNewData] = useState([]);
   const { user } = useContext(AuthContext);
-//   const {data, isLoading, isFetching} = useQuery({
-//     queryKey: ["myjobs"],
-//     queryFn: async () => {
-//         const dd = await fetch(
-//           `http://localhost:5000/myjobs?email=${user?.email}`
-//         )
-//          return await dd.json()
-//     }
-//   });
+  const {data, isLoading, isFetching, refetch} = useQuery({
+    queryKey: ["myjobs"],
+    queryFn: async () => {
+        const dd = await fetch(
+          `http://localhost:5000/myjobs?email=${user?.email}`,
+          {
+            credentials: "include",
+          }
+        );
+         return await dd.json()
+    }
+  });
 
-const { data, isLoading, isFetching , refetch} = UseMyJob();
-console.log(data, isLoading, isFetching)
+  console.log(data)
+// const { data, isLoading, isFetching , refetch} = UseMyJob();
+// console.log(data, isLoading, isFetching)
 if(isLoading === true){
       return (
         <div className="flex justify-center items-center h-[100vh]">
@@ -36,6 +41,9 @@ if(isLoading === true){
 //   }, []);
   return (
     <div>
+      <Helmet>
+        <title>CareerCanvas | My Jobs</title>
+      </Helmet>
       <h1 className="text-3xl font-semibold text-center pt-5">
         <span className="border-l pl-2 border-[#00B0FF]">Your</span>
         <span className="text-[#00B0FF]"> added</span> Jobs
@@ -58,8 +66,13 @@ if(isLoading === true){
             </tr>
           </thead>
           <tbody>
-            {data.map((myjob, idx) => (
-              <MyJobTable refetch={refetch} myjob={myjob} idx={idx} key={idx}></MyJobTable>
+            {data?.map((myjob, idx) => (
+              <MyJobTable
+                refetch={refetch}
+                myjob={myjob}
+                idx={idx}
+                key={idx}
+              ></MyJobTable>
             ))}
           </tbody>
         </table>

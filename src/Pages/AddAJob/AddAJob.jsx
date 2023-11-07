@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddAJob = () => {
       const { user } = useContext(AuthContext);
@@ -72,6 +73,9 @@ const AddAJob = () => {
     }
   return (
     <div className="bg-base-200">
+      <Helmet>
+        <title>CareerCanvas | Add A Job</title>
+      </Helmet>
       <h1 className="text-4xl text-center font-semibold py-5">
         Add your job information
       </h1>

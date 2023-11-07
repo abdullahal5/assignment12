@@ -28,9 +28,11 @@ const JobData = () => {
     }
     return (
       <div>
-        <h1 className="text-3xl font-semibold text-center my-7">
-          Job by <span className="text-[#00B0FF]">category</span>
-        </h1>
+        <div className="">
+          <h1 className="text-3xl  font-semibold text-center my-7">
+            Job by <span className="text-[#00B0FF]">category</span>
+          </h1>
+        </div>
 
         <Buttons
           menuItems={menuItems}

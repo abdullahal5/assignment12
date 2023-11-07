@@ -7,20 +7,34 @@ const JobTableDetails = () => {
     const email = user?.email
     const data = useLoaderData()
     console.log(data)
-        const { _id, photo, name, title, date, deadline, salary , applicants, description} = data;
+        const {  photo, name, title, date, deadline, salary , applicants, description} = data;
     const handleApply = (e) =>{
         e.preventDefault()
-        const name = e.target.name.value;
+        const name2 = e.target.name.value;
         const email = e.target.email.value;
         const link = e.target.link.value;
-        const apply = {name, email, link}
-        console.log(apply)
+                const data = {
+                  photo,
+                  name,
+                  title,
+                  date,
+                  deadline,
+                  salary,
+                  applicants,
+                  description,
+                  name2,
+                  email, 
+                  link
+                } 
+
+        // const apply = {name2, email, link}
+        // console.log(apply)
         fetch("http://localhost:5000/apply", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(apply)
+            body: JSON.stringify(data)
         })
         .then(res => res.json())
         .then(data => {

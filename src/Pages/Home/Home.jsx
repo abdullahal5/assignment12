@@ -47,6 +47,7 @@ const Home = () => {
         </div>
       </div>
       <JobData></JobData>
+
       <Service></Service>
       <Footer></Footer>
     </div>

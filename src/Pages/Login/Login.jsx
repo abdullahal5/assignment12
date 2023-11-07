@@ -37,6 +37,11 @@ const Login = () => {
       signInWithPopup(auth, provider)
         .then((result) => {
           console.log(result.user);
+          Swal.fire({
+            title: "Good job!",
+            text: "You successfylly logged in",
+            icon: "success",
+          });
         })
         .then((err) => {
           console.log(err);

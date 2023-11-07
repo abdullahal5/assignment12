@@ -2,9 +2,12 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+      const style = { color: "#00B0FF", fontSize: "2em" };
+
   const handleLogOut = () =>{
     logOut()
     .then(() =>{
@@ -49,7 +52,8 @@ const Navbar = () => {
               All Jobs
             </NavLink>
           </li>
-          <li>
+          {
+            user ? <li>
             <NavLink
               to="/addajobs"
               className={({ isActive, isPending }) =>
@@ -62,8 +66,11 @@ const Navbar = () => {
             >
               Add A Job
             </NavLink>
-          </li>
-          <li>
+          </li> 
+          : ''
+          }
+          {
+            user ? <li>
             <NavLink
               to="/appliedjobs"
               className={({ isActive, isPending }) =>
@@ -76,8 +83,10 @@ const Navbar = () => {
             >
               Applied Jobs
             </NavLink>
-          </li>
-          <li>
+          </li> : ''
+          }
+          {
+            user ? <li>
             <NavLink
               to="/myjobs"
               className={({ isActive, isPending }) =>
@@ -90,7 +99,8 @@ const Navbar = () => {
             >
               My Jobs
             </NavLink>
-          </li>
+          </li> : ''
+          }
           <li>
             {user? <NavLink>
               <button onClick={handleLogOut}>Log Out</button>
@@ -139,17 +149,35 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="btn btn-ghost normal-case items-center text-xl">
-              <img className="w-24"
+              <img
+                className="w-24"
                 src="https://i.ibb.co/ZS4CdBG/370267382-3049849525148107-486017350057683538-n-removebg-preview.png"
                 alt=""
-                />
-                <h1>CareerCanvas</h1>
+              />
+              <h1>CareerCanvas</h1>
             </div>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className=" menu-horizontal px-1">{links}</ul>
           </div>
+          <div></div>
           <div className="navbar-end">
+            {user ? (
+              <div className="relative group">
+                <img
+                  className="w-12 h-12 rounded-[50%] mr-10  "
+                  src={user.photoURL}
+                  alt=""
+                />
+                <div className="hidden group-hover:block absolute z-10 p-2 bg-slate-100 text-black text-xs rounded shadow">
+                  <h1>{user.displayName}</h1>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <FaUserCircle style={style} className="mr-10 "></FaUserCircle>
+              </div>
+            )}
             <a className="btn">Button</a>
           </div>
         </div>

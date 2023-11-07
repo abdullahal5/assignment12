@@ -10,11 +10,14 @@ import Registration from "../Pages/Registration/Registration";
 import JobDetails from "../Pages/JobDetail/JobDetails";
 import JobTableDetails from "../Pages/JobTableDetails/JobTableDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import UpdatedJOb from "../Components/UpdatedJob/UpdatedJOb";
+import ErrorPage from "../Components/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -27,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addajobs",
-        element: <AddAJob></AddAJob>,
+        element: (
+          <PrivateRoute>
+            <AddAJob></AddAJob>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/appliedjobs",
@@ -39,7 +46,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/myjobs",
-        element: <MyJobs></MyJobs>,
+        element: (
+          <PrivateRoute>
+            <MyJobs></MyJobs>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -68,6 +79,12 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/jobs/${params.id}`),
+      },
+      {
+        path: "/updatedJob/:id",
+        element: <UpdatedJOb></UpdatedJOb>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/myjobs/${params.id}`),
       },
     ],
   },

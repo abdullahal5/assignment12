@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddAJob = () => {
+      const { user } = useContext(AuthContext);
+      const email1 = user?.email;
     const [selectedForm, setSelectedForm] = useState('')
     const [startDate, setStartDate] = useState(new Date());
     const [application, setapplication] = useState(0)
@@ -20,6 +24,10 @@ const AddAJob = () => {
         const job = {
             name, title, category, salary, description,date, deadline, photo, applicants
         }
+        const job1 = {
+            name, title, category, salary, description,date, deadline, photo, applicants, email1
+        }
+
         console.log(job)
         fetch("http://localhost:5000/jobs",{
             method: "POST",
@@ -29,8 +37,35 @@ const AddAJob = () => {
             body: JSON.stringify(job)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+          console.log(data)
+          if (data.insertedId) {
+            Swal.fire({
+              title: "Good job!",
+              text: "You successfylly added a card",
+              icon: "success",
+            });
+          }
+        })
         
+        fetch('http://localhost:5000/myjobs', {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(job1),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data)
+            if(data.insertedId){
+              Swal.fire({
+                title: "Good job!",
+                text: "You successfylly added a card",
+                icon: "success",
+              });
+            }
+          });
     }
     const handleChange = e =>{
         setSelectedForm(e.target.value)

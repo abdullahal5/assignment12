@@ -1,6 +1,7 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import JobData from "../../Components/Jobdata/JobData";
 import Footer from "../../Components/Footer/Footer";
+import Service from "../../Components/Service/Service";
 const Home = () => {
         const style = { color: "#00B0FF", fontSize: "1.5em" };
 
@@ -46,6 +47,7 @@ const Home = () => {
         </div>
       </div>
       <JobData></JobData>
+      <Service></Service>
       <Footer></Footer>
     </div>
   );

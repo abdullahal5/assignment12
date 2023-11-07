@@ -12,7 +12,7 @@ const Jobrow = ({job, idx}) => {
         <td>{salary}</td>
         <td>
           <Link to={`/jobTableDetails/${_id}`}>
-            <button className="bg-[#00B0FF] px-4 py-2 text-white font-bold">
+            <button className="bg-[#00B0FF] rounded-lg px-4 py-2 text-white font-bold">
               Details
             </button>
           </Link>

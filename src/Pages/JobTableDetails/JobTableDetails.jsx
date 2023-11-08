@@ -1,9 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import toast, { Toaster } from "react-hot-toast";
+import emailjs from "@emailjs/browser";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const JobTableDetails = () => {
     const {user} = useContext(AuthContext);
@@ -44,6 +46,13 @@ const JobTableDetails = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+            if(data.insertedId){
+               Swal.fire({
+                 title: "Nice!",
+                 text: "You successfylly Applied for the Job",
+                 icon: "success",
+               });
+            }
         })
     }
    
@@ -52,17 +61,34 @@ const JobTableDetails = () => {
         return toast.error("The application time is over");
       }
       else{
+       
         document.getElementById("my_modal_3").showModal();
         setAppliedFor(applicants + 1)
-        fetch(`http://localhost:5000/apply/${_id}`, {
-          method: 'POST',
-          headers: {'content-type': 'application/json' },
-          body: JSON.stringify(appliedFor)
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
-      }
+        
+        
     }
+  }
+   const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_5inyw3v",
+        "template_kxip6gc",
+        form.current,
+        "IXst6eLIBbYF_WpCt"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+      e.target.reset()
+  };
     return (
       <div>
         <div>
@@ -111,7 +137,12 @@ const JobTableDetails = () => {
                       Apply
                     </h3>
                     <p className="py-4">
-                      <form onSubmit={handleApply}>
+                      <form
+                        ref={form}
+                        onSubmit={(e) => {
+                          handleApply, sendEmail(e)
+                        }}
+                      >
                         <div className="text-center">
                           <p className="text-sm py-2">Name:</p>
                           <input

@@ -6,71 +6,88 @@ import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 
 const AddAJob = () => {
-      const { user } = useContext(AuthContext);
-      const email1 = user?.email;
-    const [selectedForm, setSelectedForm] = useState('')
-    const [startDate, setStartDate] = useState(new Date());
-    const [application, setapplication] = useState(0)
-    const handleAdd = (e) =>{
-        e.preventDefault()
-        const name = e.target.name.value
-        const title = e.target.title.value
-        const category = selectedForm
-        const salary = e.target.salary.value;
-        const description = e.target.description.value;
-        const date = e.target.date.value;
-        const deadline = startDate;
-        const photo = e.target.photo.value
-        const applicants = application
-        const job = {
-            name, title, category, salary, description,date, deadline, photo, applicants
-        }
-        const job1 = {
-            name, title, category, salary, description,date, deadline, photo, applicants, email1
-        }
+  const { user } = useContext(AuthContext);
+  const email1 = user?.email;
+  const [selectedForm, setSelectedForm] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [application, setapplication] = useState(0);
+  const handleAdd = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const title = e.target.title.value;
+    const category = selectedForm;
+    const salary = e.target.salary.value;
+    const description = e.target.description.value;
+    const date = e.target.date.value;
+    const deadline = startDate;
+    const photo = e.target.photo.value;
+    const applicants = application;
+    const job = {
+      name,
+      title,
+      category,
+      salary,
+      description,
+      date,
+      deadline,
+      photo,
+      applicants,
+    };
+    const job1 = {
+      name,
+      title,
+      category,
+      salary,
+      description,
+      date,
+      deadline,
+      photo,
+      applicants,
+      email1,
+    };
 
-        console.log(job)
-        fetch("http://localhost:5000/jobs",{
-            method: "POST",
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(job)
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          if (data.insertedId) {
-            Swal.fire({
-              title: "Good job!",
-              text: "You successfylly added a card",
-              icon: "success",
-            });
-          }
-        })
-        
-        fetch('http://localhost:5000/myjobs', {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(job1),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data)
-            if(data.insertedId){
-              Swal.fire({
-                title: "Good job!",
-                text: "You successfylly added a card",
-                icon: "success",
-              });
-            }
+    console.log(job);
+    fetch("https://b8a11-server-side-abdullahal5.vercel.app/jobs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(job),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Good job!",
+            text: "You successfylly added a card",
+            icon: "success",
           });
-    }
-    const handleChange = e =>{
-        setSelectedForm(e.target.value)
-    }
+        }
+      });
+
+    fetch("https://b8a11-server-side-abdullahal5.vercel.app/myjobs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(job1),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Good job!",
+            text: "You successfylly added a card",
+            icon: "success",
+          });
+        }
+      });
+  };
+  const handleChange = (e) => {
+    setSelectedForm(e.target.value);
+  };
   return (
     <div className="bg-base-200">
       <Helmet>

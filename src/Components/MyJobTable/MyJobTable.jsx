@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 const MyJobTable = ({ idx, myjob, refetch }) => {
   const { _id, name, title, date, deadline, salary, applicants, description } =
-    myjob
+    myjob;
 
   const handleDelete = (_id) => {
     Swal.fire({
@@ -17,21 +17,24 @@ const MyJobTable = ({ idx, myjob, refetch }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/myjobs/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://b8a11-server-side-abdullahal5.vercel.app/myjobs/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
             if (data.deletedCount > 0) {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              refetch()
+              refetch();
             }
           });
       }
     });
   };
-  
+
   return (
     <tr>
       <th>{idx + 1}</th>

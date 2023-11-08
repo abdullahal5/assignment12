@@ -27,7 +27,8 @@ const router = createBrowserRouter([
       {
         path: "/alljobs",
         element: <Alljobs></Alljobs>,
-        loader: () => fetch("http://localhost:5000/jobs"),
+        loader: () =>
+          fetch("https://b8a11-server-side-abdullahal5.vercel.app/jobs"),
       },
       {
         path: "/addajobs",
@@ -69,7 +70,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(
+            `https://b8a11-server-side-abdullahal5.vercel.app/jobs/${params.id}`
+          ),
       },
       {
         path: "/jobTableDetails/:id",
@@ -79,18 +82,22 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(
+            `https://b8a11-server-side-abdullahal5.vercel.app/jobs/${params.id}`
+          ),
       },
       {
         path: "/updatedJob/:id",
         element: <UpdatedJOb></UpdatedJOb>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/myjobs/${params.id}`),
+          fetch(
+            `https://b8a11-server-side-abdullahal5.vercel.app/myjobs/${params.id}`
+          ),
       },
       {
-        path: '/blog',
-        element: <Blog></Blog>
-      }
+        path: "/blog",
+        element: <Blog></Blog>,
+      },
     ],
   },
 ]);

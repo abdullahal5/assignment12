@@ -11,22 +11,20 @@ const UpdatedJOb = () => {
   const [selectedForm, setSelectedForm] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [application, setapplication] = useState(0);
-  const loadedData = useLoaderData()
-    const {
-      _id,
-      name,
-      title,
-      category,
-      date,
-      deadline,
-      salary,
-      applicants,
-      description,
-      photo,
-      
-    } = loadedData;
-    console.log(loadedData)
-
+  const loadedData = useLoaderData();
+  const {
+    _id,
+    name,
+    title,
+    category,
+    date,
+    deadline,
+    salary,
+    applicants,
+    description,
+    photo,
+  } = loadedData;
+  console.log(loadedData);
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -49,31 +47,30 @@ const UpdatedJOb = () => {
       deadline,
       photo,
       applicants,
-      email1
+      email1,
     };
 
     console.log(job1);
-    fetch(`http://localhost:5000/myjobs/${_id}`, {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(job1),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data)
-            if (data.modifiedCount) {
-              Swal.fire({
-                title: "Good job!",
-                text: "You successfylly updated a card",
-                icon: "success",
-              });
-            }
-            
+    fetch(`https://b8a11-server-side-abdullahal5.vercel.app/myjobs/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(job1),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            title: "Good job!",
+            text: "You successfylly updated a card",
+            icon: "success",
           });
-    }
-  
+        }
+      });
+  };
+
   const handleChange = (e) => {
     setSelectedForm(e.target.value);
   };
@@ -187,7 +184,6 @@ const UpdatedJOb = () => {
         </p>
         <div>
           <button
-           
             type="submit"
             className="w-full mt-5 text-white font-bold bg-[#00B0FF] py-3 "
           >

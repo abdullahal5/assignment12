@@ -8,35 +8,33 @@ import { useQuery } from "@tanstack/react-query";
 const MyJobs = () => {
   const [newData, setNewData] = useState([]);
   const { user } = useContext(AuthContext);
-  const {data, isLoading, isFetching, refetch} = useQuery({
+  const { data, isLoading, isFetching, refetch } = useQuery({
     queryKey: ["myjobs"],
     queryFn: async () => {
-        const dd = await fetch(
-          `http://localhost:5000/myjobs?email=${user?.email}`,
-          
-        );
-         return await dd.json()
-    }
+      const dd = await fetch(
+        `https://b8a11-server-side-abdullahal5.vercel.app/myjobs?email=${user?.email}`
+      );
+      return await dd.json();
+    },
   });
 
-  console.log(data)
-// const { data, isLoading, isFetching , refetch} = UseMyJob();
-// console.log(data, isLoading, isFetching)
-if(isLoading === true){
-      return (
-        <div className="flex justify-center items-center h-[100vh]">
-          <span className="loading loading-spinner loading-lg"></span>
-        </div>
-      );
-    }
+  console.log(data);
+  // const { data, isLoading, isFetching , refetch} = UseMyJob();
+  // console.log(data, isLoading, isFetching)
+  if (isLoading === true) {
+    return (
+      <div className="flex justify-center items-center h-[100vh]">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
 
-
-//   useEffect(() => {
-//     const url = `http://localhost:5000/myjobs?email=${user?.email}`;
-//     fetch(url)
-//       .then((res) => res.json())
-//       .then((data) => setNewData(data));
-//   }, []);
+  //   useEffect(() => {
+  //     const url = `https://b8a11-server-side-abdullahal5.vercel.app/myjobs?email=${user?.email}`;
+  //     fetch(url)
+  //       .then((res) => res.json())
+  //       .then((data) => setNewData(data));
+  //   }, []);
   return (
     <div>
       <Helmet>

@@ -80,7 +80,7 @@ const AddAJob = () => {
         Add your job information
       </h1>
       <form onSubmit={handleAdd} className="p-20">
-        <div className="flex justify-center gap-10">
+        <div className="flex lg:flex-row md:flex-row flex-col justify-center gap-10">
           <div className="w-full">
             <p className="text-sm pb-4">User Name:</p>
             <input
@@ -100,7 +100,7 @@ const AddAJob = () => {
             />
           </div>
         </div>
-        <div className="flex gap-10">
+        <div className="flex lg:flex-row md:flex-row flex-col gap-10">
           <div className="w-full">
             <p className="text-sm pb-4">Select job category:</p>
 
@@ -128,7 +128,7 @@ const AddAJob = () => {
             />
           </div>
         </div>
-        <div className="flex justify-center gap-10">
+        <div className="flex lg:flex-row md:flex-row flex-col justify-center gap-10">
           <div className="w-full">
             <p className="text-sm pb-4">Job description:</p>
 
@@ -149,7 +149,7 @@ const AddAJob = () => {
             />
           </div>
         </div>
-        <div className="flex justify-center gap-10">
+        <div className="flex lg:flex-row md:flex-row flex-col justify-center gap-10">
           <div className="w-full">
             <p className="text-sm pb-4">Application Deadline</p>
             <DatePicker
@@ -168,7 +168,7 @@ const AddAJob = () => {
             />
           </div>
         </div>
-        <p className="border border-[#00B0FF] py-3 pl-5 bg-white mx-20">
+        <p className="border border-[#00B0FF] py-3 pl-5 bg-white lg:mx-20">
           Job Applicants Number : {application}
         </p>
         <div>

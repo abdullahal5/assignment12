@@ -13,9 +13,7 @@ const MyJobs = () => {
     queryFn: async () => {
         const dd = await fetch(
           `http://localhost:5000/myjobs?email=${user?.email}`,
-          {
-            credentials: "include",
-          }
+          
         );
          return await dd.json()
     }

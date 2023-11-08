@@ -14,6 +14,8 @@ const JobTableDetails = () => {
     const { _id, photo, name, title, date, deadline, salary , applicants, description, category} = data;
   const [appliedFor, setAppliedFor] = useState(applicants)
   console.log(appliedFor)
+  const currentDate = new Date()
+  console.log(currentDate)
     const handleApply = (e) =>{
         e.preventDefault()
         const name2 = e.target.name.value;
@@ -57,7 +59,7 @@ const JobTableDetails = () => {
     }
    
     const handleModal = () =>{
-      if (deadline < date) {
+      if (deadline > date) {
         return toast.error("The application time is over");
       }
       else{
@@ -81,7 +83,10 @@ const JobTableDetails = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
+          console.log(result.text)
+          if(result.text){
+           return toast.success("The email has been sent")
+          }
         },
         (error) => {
           console.log(error.text);

@@ -8,13 +8,14 @@ const AppliedJobs = () => {
     const [applied, setApplied] = useState([]);
     const [value, setValue] = useState('')
     // console.log(value)
-    const url = `http://localhost:5000/apply?email=${user?.email}`;
+    // const url = `http://localhost:5000/apply?email=${user?.email}`;
     useEffect(()=>{
-        fetch(url, {
-          credentials: 'include'
+        fetch(`http://localhost:5000/apply?email=${user?.email}`, 
+        {
+          credentials: "include",
         })
-        .then(res => res.json())
-        .then(data => setApplied(data))
+          .then((res) => res.json())
+          .then((data) => setApplied(data));
     },[])
 
     const currentValue =(e) =>{

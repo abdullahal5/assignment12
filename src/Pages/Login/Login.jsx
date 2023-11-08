@@ -7,7 +7,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 const Login = () => {
-  const {signInUser, auth} = useContext(AuthContext)
+  const {signInUser, auth,} = useContext(AuthContext)
   const [err, setErr] = useState('')
   const provider = new GoogleAuthProvider();
     const style = { color: "#00B0FF", fontSize: "1.5em" };
@@ -27,17 +27,6 @@ const Login = () => {
           icon: "success",
         });
         // jwt fetch
-        fetch("http://localhost:5000/jwt", {
-          method: "post",
-          credentials: 'include',
-          // withCredentials: true,
-          headers: {
-            'content-type': 'application/json'
-          },
-          body: JSON.stringify({email:email})
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
       })
       .catch(err =>{
         console.log(err)

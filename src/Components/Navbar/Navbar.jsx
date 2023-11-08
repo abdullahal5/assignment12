@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaUserCircle } from "react-icons/fa";
@@ -26,12 +26,10 @@ const Navbar = () => {
       console.log(err)
     })
   }
-  const handleBlog = () =>{
-    window.location.href = "../Blog/index.html";
-  }
+  
     const links = (
       <>
-        <div className="flex gap-7">
+        <div className="flex lg:flex-row md:flex-col flex-col gap-7">
           <li>
             <NavLink
               to="/"
@@ -168,8 +166,7 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className=" menu-horizontal px-1">{links}</ul>
           </div>
-          <div></div>
-          <div className="navbar-end">
+          <div className=" navbar-end mx-auto flex-col">
             {user ? (
               <div className="relative group">
                 <img
@@ -186,8 +183,10 @@ const Navbar = () => {
                 <FaUserCircle style={style} className="mr-10 "></FaUserCircle>
               </div>
             )}
-            <a onClick={handleBlog} className="btn bg-[#00B0FF] text-white ">Blog</a>
           </div>
+          <Link to="/blog">
+            <button className="btn bg-[#00B0FF] text-white ">Blog</button>
+         </Link>
         </div>
       </div>
     );

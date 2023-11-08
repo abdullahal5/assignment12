@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div>
       <footer className="bg-black p-10 text-neutral-content">
-        <div className="flex justify-center items-center">
+        <div className="flex lg:flex-row  md:flex-row flex-col justify-center items-center">
           <img
             className="w-24 "
             src="https://i.ibb.co/ZS4CdBG/370267382-3049849525148107-486017350057683538-n-removebg-preview.png"
@@ -14,7 +14,7 @@ const Footer = () => {
           />
           <h1 className="text-2xl">CareerCanvas</h1>
         </div>
-        <div className="flex justify-evenly">
+        <div className="flex lg:flex-row md:flex-row flex-col justify-evenly">
           <div className="space-y-3">
             <h1>For contact information :</h1>
             <hr className="w-44" />

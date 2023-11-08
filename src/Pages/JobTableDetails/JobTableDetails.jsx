@@ -1,15 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 const JobTableDetails = () => {
     const {user} = useContext(AuthContext);
     const email = user?.email
     const data = useLoaderData()
-    // console.log(data)
-        const {  photo, name, title, date, deadline, salary , applicants, description, category} = data;
+    const { _id, photo, name, title, date, deadline, salary , applicants, description, category} = data;
+  const [appliedFor, setAppliedFor] = useState(applicants)
+  console.log(appliedFor)
     const handleApply = (e) =>{
         e.preventDefault()
         const name2 = e.target.name.value;
@@ -47,11 +49,18 @@ const JobTableDetails = () => {
    
     const handleModal = () =>{
       if (deadline < date) {
-        //  alert('not ok')
         return toast.error("The application time is over");
       }
       else{
         document.getElementById("my_modal_3").showModal();
+        setAppliedFor(applicants + 1)
+        fetch(`http://localhost:5000/apply/${_id}`, {
+          method: 'POST',
+          headers: {'content-type': 'application/json' },
+          body: JSON.stringify(appliedFor)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
       }
     }
     return (
@@ -77,7 +86,7 @@ const JobTableDetails = () => {
               <h2 className="card-title">Job Title:{title}</h2>
               <div>
                 <h1>Salary Range: {salary}</h1>
-                <h1>Job Applicants Number: {applicants}</h1>
+                <h1>Job Applicants Number: {appliedFor}</h1>
               </div>
               <p>Description: {description}</p>
               <div className="card-actions justify-end">

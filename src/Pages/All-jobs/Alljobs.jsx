@@ -28,12 +28,12 @@ const Alljobs = () => {
       <h1 className="text-4xl text-center my-5">
         All jobs in <span className="text-[#00B0FF]">tabular form</span>
       </h1>
-      <hr className="pt-5 mx-auto w-[450px] border-[#00B0FF]" />
+      <hr className="pt-5 mx-auto w-60 md:w-[450px] lg:w-[450px] border-[#00B0FF]" />
       <div className="relative text-center">
         <input
           onChange={(e) => setSearch(e.target.value)}
           name="search"
-          className="px-24 py-2 mb-5 border border-[#00B0FF]"
+          className="px-24 w-60 lg:w-auto md:w-auto py-2 mb-5 border border-[#00B0FF]"
           type="text"
           placeholder="search by title"
         />
@@ -46,10 +46,10 @@ const Alljobs = () => {
         ></BsSearch>
       </div>
 
-      <div className="overflow-x-auto flex justify-center px-20">
+      <div className=" flex justify-center px-20">
         <table className="table table-xs">
-          <thead>
-            <tr>
+          <thead className="">
+            <tr className="">
               <th>S. No.</th>
               <th>Name</th>
               <th>Job Title</th>
@@ -64,11 +64,11 @@ const Alljobs = () => {
               <span className="loading loading-spinner loading-lg"></span>
             </div>
           ) : (
-            <tbody>
-              {filteredData.map((job, idx) => (
-                <Jobrow job={job} idx={idx} key={job._id}></Jobrow>
-              ))}
-            </tbody>
+              <tbody className="">
+                {filteredData.map((job, idx) => (
+                  <Jobrow job={job} idx={idx} key={job._id}></Jobrow>
+                ))}
+              </tbody>
           )}
         </table>
       </div>

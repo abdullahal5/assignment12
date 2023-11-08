@@ -12,6 +12,7 @@ import JobTableDetails from "../Pages/JobTableDetails/JobTableDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import UpdatedJOb from "../Components/UpdatedJob/UpdatedJOb";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
+import Blog from "../Components/Blog/blog";
 
 const router = createBrowserRouter([
   {
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/myjobs/${params.id}`),
       },
+      {
+        path: '/blog',
+        element: <Blog></Blog>
+      }
     ],
   },
 ]);

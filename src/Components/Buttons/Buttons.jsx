@@ -19,7 +19,7 @@ const Buttons = ({
       setActiveButton('')
     }
   return (
-    <div className="flex justify-center gap-10">
+    <div className="flex lg:flex-row md:flex-row flex-col lg:w-full md:w-full mx-auto w-40 justify-center gap-10">
       {menuItems.map((val, idx) => (
         <button
           className={`px-4 py-2 ${

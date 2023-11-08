@@ -11,16 +11,16 @@ const Home = () => {
       <Helmet>
         <title>CareerCanvas | Home</title>
       </Helmet>
-      <div className="flex items-center justify-center gap-10">
+      <div className="flex lg:flex-row md:flex-row flex-col items-center justify-center gap-10">
         <div className="space-y-4">
-          <h1 className="font-semibold ">
+          <h1 className="lg:font-semibold md:font-semibold text-center lg:text-left md:text-left text-xl">
             <span className="text-2xl ">Discover</span> <br />
             <span className="text-3xl text-[#00B0FF]">Your Next Adventure</span>
             , <br />
             <span className="text-4xl">Join Our Job Search Journey</span>
           </h1>
-          <hr className="border-[#00B0FF]" />
-          <p className="italic">
+          <hr className="border-[#00B0FF] lg:w-auto md:w-auto w-60 mx-auto" />
+          <p className="italic lg:text-left md:text-left text-center">
             Discover Your Dream Career at CareerCanvas. <br /> We connect talent
             with opportunities, <br /> providing tailored job searches to help
             you achieve <br />
@@ -30,7 +30,7 @@ const Home = () => {
           <div className="relative">
             <input
               name="search"
-              className="px-24 mb-5 py-2 border border-[#00B0FF]"
+              className="lg:px-24 pl-14 mb-5 py-2 border border-[#00B0FF]"
               type="text"
               placeholder="Search here"
             />
@@ -44,7 +44,7 @@ const Home = () => {
           </div>
         </div>
         <div>
-          <img
+          <img 
             src="https://i.ibb.co/Hgy8WFv/undraw-Job-hunt-re-q203.png"
             alt=""
           />

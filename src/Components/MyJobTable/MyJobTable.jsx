@@ -18,7 +18,7 @@ const MyJobTable = ({ idx, myjob, refetch }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://b8a11-server-side-abdullahal5.vercel.app/myjobs/${_id}`,
+          `http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app//myjobs/${_id}`,
           {
             method: "DELETE",
           }

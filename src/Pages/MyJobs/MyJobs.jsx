@@ -12,7 +12,10 @@ const MyJobs = () => {
     queryKey: ["myjobs"],
     queryFn: async () => {
       const dd = await fetch(
-        `https://b8a11-server-side-abdullahal5.vercel.app/myjobs?email=${user?.email}`
+        `http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/myjobs?email=${user?.email}`,
+        {
+          credentials: "include",
+        }
       );
       return await dd.json();
     },
@@ -30,7 +33,7 @@ const MyJobs = () => {
   }
 
   //   useEffect(() => {
-  //     const url = `https://b8a11-server-side-abdullahal5.vercel.app/myjobs?email=${user?.email}`;
+  //     const url = `http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app//myjobs?email=${user?.email}`;
   //     fetch(url)
   //       .then((res) => res.json())
   //       .then((data) => setNewData(data));

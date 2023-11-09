@@ -8,10 +8,10 @@ const AppliedJobs = () => {
   const [applied, setApplied] = useState([]);
   const [value, setValue] = useState("");
   // console.log(value)
-  // const url = `https://b8a11-server-side-abdullahal5.vercel.app/apply?email=${user?.email}`;
+  // const url = `http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app//apply?email=${user?.email}`;
   useEffect(() => {
     fetch(
-      `https://b8a11-server-side-abdullahal5.vercel.app/apply?email=${user?.email}`,
+      `http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/apply?email=${user?.email}`,
       {
         credentials: "include",
       }

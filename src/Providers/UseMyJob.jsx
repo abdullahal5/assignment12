@@ -8,7 +8,7 @@ const UseMyJob = () => {
     queryKey: ["myjobs"],
     queryFn: async () => {
       const dd = await fetch(
-        `https://b8a11-server-side-abdullahal5.vercel.app/myjobs?email1=${user?.email}`
+        `http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/myjobs?email1=${user?.email}`
       );
       return await dd.json();
     },

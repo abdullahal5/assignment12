@@ -19,8 +19,8 @@ const Navbar = () => {
         });
         axios
           .post(
-            "https://b8a11-server-side-abdullahal5.vercel.app/logout",
-            user,
+            "http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/logout",
+            user.email,
             {
               withCredentials: true,
             }

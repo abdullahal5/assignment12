@@ -6,48 +6,66 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import axios from "axios";
 const Login = () => {
-  const {signInUser, auth,} = useContext(AuthContext)
-  const [err, setErr] = useState('')
+  const { signInUser, auth } = useContext(AuthContext);
+  const [err, setErr] = useState("");
   const provider = new GoogleAuthProvider();
-    const style = { color: "#00B0FF", fontSize: "1.5em" };
-    const handleLogin = (e) =>{
-      e.preventDefault()
-      const email = e.target.email.value;
-      const password = e.target.password.value;
-      
-      console.log(email, password)
-      signInUser(email, password)
-      .then(res =>{
-        e.target.reset()
-        console.log(res)
+  const style = { color: "#00B0FF", fontSize: "1.5em" };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    console.log(email, password);
+    signInUser(email, password).then((res) => {
+      e.target.reset();
+      console.log(res);
+      Swal.fire({
+        title: "Good job!",
+        text: "You successfylly logged in",
+        icon: "success",
+      });
+      // jwt fetch
+      axios
+        .post(
+          "http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/jwt",
+          email,
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+        });
+    });
+    setErr("");
+  };
+  const handleGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result.user);
         Swal.fire({
           title: "Good job!",
           text: "You successfylly logged in",
           icon: "success",
         });
-        // jwt fetch
-      })
-      .catch(err =>{
-        console.log(err)
-        setErr(err.message)
-      })
-      setErr('')
-    }
-    const handleGoogle = () => {
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          console.log(result.user);
-          Swal.fire({
-            title: "Good job!",
-            text: "You successfylly logged in",
-            icon: "success",
+        axios
+          .post(
+            "http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/jwt",
+            result.user.email,
+            {
+              withCredentials: true,
+            }
+          )
+          .then((res) => {
+            console.log(res.data);
           });
-        })
-        .then((err) => {
-          console.log(err);
-        });
-    };
+      })
+      .then((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="flex justify-center gap-10 items-center h-[100vh]">
       <form onSubmit={handleLogin}>
@@ -90,7 +108,7 @@ const Login = () => {
         <p className="my-3 text-center">or login with </p>
         <div>
           <button
-          onClick={handleGoogle}
+            onClick={handleGoogle}
             type="submit"
             className="px-[120px] py-2 border bg-white text-[#00B0FF] font-bold flex items-center"
           >

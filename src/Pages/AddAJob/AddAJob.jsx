@@ -47,13 +47,16 @@ const AddAJob = () => {
     };
 
     console.log(job);
-    fetch("https://b8a11-server-side-abdullahal5.vercel.app/jobs", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(job),
-    })
+    fetch(
+      "http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/jobs",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(job),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -66,13 +69,16 @@ const AddAJob = () => {
         }
       });
 
-    fetch("https://b8a11-server-side-abdullahal5.vercel.app/myjobs", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(job1),
-    })
+    fetch(
+      "http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/myjobs",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(job1),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

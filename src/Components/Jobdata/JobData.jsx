@@ -12,7 +12,9 @@ const JobData = () => {
   console.log(items);
   const menuItems = [...new Set(items.map((val) => val.category))];
   useEffect(() => {
-    fetch("https://b8a11-server-side-abdullahal5.vercel.app/jobs")
+    fetch(
+      "http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/jobs"
+    )
       .then((res) => res.json())
       .then((data) => {
         setItems(data);

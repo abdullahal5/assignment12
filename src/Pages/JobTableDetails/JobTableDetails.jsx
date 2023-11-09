@@ -49,13 +49,16 @@ const JobTableDetails = () => {
 
     // const apply = {name2, email, link}
     // console.log(apply)
-    fetch("https://b8a11-server-side-abdullahal5.vercel.app/apply", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      "http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/apply",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -152,7 +152,7 @@ const JobTableDetails = () => {
                     <form
                       ref={form}
                       onSubmit={(e) => {
-                        handleApply, sendEmail(e);
+                        handleApply(e), sendEmail(e);
                       }}
                     >
                       <div className="text-center">

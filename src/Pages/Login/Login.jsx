@@ -48,7 +48,7 @@ const Login = () => {
         });
         axios
           .post(
-            "http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/jwt",
+            "https://b8a11-server-side-abdullahal5.vercel.app/jwt",
             result.user.email,
             {
               withCredentials: true,

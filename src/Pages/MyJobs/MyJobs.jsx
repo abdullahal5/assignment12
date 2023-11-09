@@ -12,7 +12,7 @@ const MyJobs = () => {
     queryKey: ["myjobs"],
     queryFn: async () => {
       const dd = await fetch(
-        `http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/myjobs?email=${user?.email}`,
+        `https://b8a11-server-side-abdullahal5.vercel.app/myjobs?email=${user?.email}`,
         {
           credentials: "include",
         }

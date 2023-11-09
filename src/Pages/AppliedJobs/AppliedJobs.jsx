@@ -11,7 +11,7 @@ const AppliedJobs = () => {
   // const url = `http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app//apply?email=${user?.email}`;
   useEffect(() => {
     fetch(
-      `http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/apply?email=${user?.email}`,
+      `https://b8a11-server-side-abdullahal5.vercel.app/apply?email=${user?.email}`,
       {
         credentials: "include",
       }

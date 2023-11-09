@@ -28,13 +28,9 @@ const Login = () => {
       });
       // jwt fetch
       axios
-        .post(
-          "http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/jwt",
-          email,
-          {
-            withCredentials: true,
-          }
-        )
+        .post("https://b8a11-server-side-abdullahal5.vercel.app/jwt", email, {
+          withCredentials: true,
+        })
         .then((res) => {
           console.log(res.data);
         });

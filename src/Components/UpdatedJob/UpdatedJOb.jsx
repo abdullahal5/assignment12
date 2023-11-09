@@ -51,16 +51,13 @@ const UpdatedJOb = () => {
     };
 
     console.log(job1);
-    fetch(
-      `http://https://b8a11-server-side-abdullahal5-33g7geoxz.vercel.app/myjobs/${_id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(job1),
-      }
-    )
+    fetch(`https://b8a11-server-side-abdullahal5.vercel.app/myjobs/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(job1),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
